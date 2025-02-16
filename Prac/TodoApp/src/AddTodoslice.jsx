@@ -13,11 +13,32 @@ const AddtodoSlice = createSlice({
     },
     deletetask:(state,actions)=>{
         state.todolist=state.todolist.filter(itm=>itm.id!==actions.payload.id)
+    },
+    cmp:(state,actions)=>{
+        for(let i=0;i<state.todolist.length;i++){
+            if(state.todolist[i].id==actions.payload.id){
+                state.todolist[i].cmpstatus=false
+            }
+        }
+    },
+    inc :(state,actions)=>{
+        for(let i=0;i<state.todolist.length;i++){
+            if(state.todolist[i].id==actions.payload.id){
+                state.todolist[i].cmpstatus=true
+            }
+        }
+    },
+    taskeditSave:(state,actions)=>{
+        for(let i=0;i<state.todolist.length;i++){
+            if(state.todolist[i].id==actions.payload.id){
+                state.todolist[i].work=actions.payload.data
+            }
+        }
     }
 }
 
 
 
 })
-export const {Addtodo,deletetask} = AddtodoSlice.actions
+export const {Addtodo,deletetask,cmp,inc,taskeditSave} = AddtodoSlice.actions
  export default AddtodoSlice.reducer
